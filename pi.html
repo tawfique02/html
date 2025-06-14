@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dark Man | Ethical Hacker</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Courier New', Courier, monospace;
+      color: #00ffcc;
+    }
+
+    /* Matrix falling code animation */
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .banner {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 80px auto;
+      background: rgba(0, 0, 0, 0.8);
+      border: 3px solid #00ffcc;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 0 30px #00ffe1;
+      text-align: center;
+      animation: glow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 20px #00ffcc;
+      }
+      to {
+        box-shadow: 0 0 60px #00ffe1;
+      }
+    }
+
+    .ascii-line {
+      white-space: pre;
+      line-height: 1.4em;
+      color: #00ffe1;
+    }
+
+    .highlight {
+      color: #ff00ff;
+      font-weight: bold;
+      text-shadow: 0 0 5px #ff00ff, 0 0 20px #ff00ff;
+    }
+
+    .intro {
+      color: #39ff14;
+      font-size: 22px;
+      margin-bottom: 20px;
+      animation: typing 5s steps(60, end), blink .75s step-end infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #39ff14;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #39ff14; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="banner">
+  <div class="intro">Initializing Banner... Welcome, Cyber World!</div>
+  <div class="ascii-line">ↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂ</div>
+  <div class="ascii-line">ↂ     ⟬ῼὊὊὊὊὊὊὊὊὊὊὊῼ⟭       ⟬ῼὊὊὊὊὊὊὊὊὊὊὊῼ⟭     ↂ</div>
+  <div class="ascii-line">ↂ           ∑                    2                         ↂ</div>
+  <div class="ascii-line">ↂ           2                    1                         ↂ</div>
+  <div class="ascii-line">ↂ           1                    211111111                 ↂ</div>
+  <div class="ascii-line">ↂ           0                    1                         ↂ</div>
+  <div class="ascii-line">ↂ           7                    2                         ↂ</div>
+  <div class="ascii-line">ↂ           №                   №222222222223              ↂ</div>
+  <div class="ascii-line">ↂ                                                          ↂ</div>
+  <div class="ascii-line highlight">ↂ           DARK                 MAN                       ↂ</div>
+  <div class="ascii-line">ↂ                                                          ↂ</div>
+  <div class="ascii-line highlight">ↂ         ETHICAL               HACKER                    ↂ</div>
+  <div class="ascii-line">ↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂↂ</div>
+</div>
+
+<script>
+  // Matrix Rain Background Effect
+  const canvas = document.getElementById('matrix');
+  const ctx = canvas.getContext('2d');
+
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+
+  const matrix = "010101110101001010101011";
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array(Math.floor(columns)).fill(1);
+
+  function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#0f0";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = matrix[Math.floor(Math.random() * matrix.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  setInterval(draw, 50);
+</script>
+
+</body>
+</html>
