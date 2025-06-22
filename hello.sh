@@ -1,4 +1,3 @@
-Vaijan apnar take arekto modify korlam nen : 
 
  #!/bin/bash
 
